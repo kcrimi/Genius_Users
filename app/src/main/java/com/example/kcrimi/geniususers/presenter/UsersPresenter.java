@@ -3,6 +3,7 @@ package com.example.kcrimi.geniususers.presenter;
 import com.example.kcrimi.geniususers.adapter.UserAdapter;
 import com.example.kcrimi.geniususers.model.User;
 import com.example.kcrimi.geniususers.networking.ApiService;
+import com.example.kcrimi.geniususers.view.UserEditActivity;
 import com.example.kcrimi.geniususers.view.UsersActivity;
 
 import java.util.ArrayList;
@@ -21,11 +22,11 @@ public class UsersPresenter extends BasePresenter<UsersActivity> {
     }
 
     public void addNewUser() {
-        // Launch intent for profile creation
+        UserEditActivity.LaunchForNewUser(view);
     }
 
     public void selectRow(int position) {
-        // Launch intent for profile view
+        UserEditActivity.LaunchWithUser(view, users.get(position).getId());
     }
 
     public int getUserCount() {
