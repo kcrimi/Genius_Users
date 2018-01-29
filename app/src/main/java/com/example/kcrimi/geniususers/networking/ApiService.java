@@ -21,6 +21,14 @@ public class ApiService {
 
     public ApiService() {
         users = new ArrayList<>();
+        createBaseUsers();
+    }
+
+    private void createBaseUsers() {
+        addUser("Kevin", "www", "I like drawings");
+        addUser("Juliet", "www", "Wherefor art thou romeo?");
+        addUser("Steve P", "www", "Come with me if you want to live");
+        addUser("GeoMan", "www", "I'm here to save the mid compact cars!");
     }
 
     public static ApiService getInstance() {
@@ -45,5 +53,9 @@ public class ApiService {
             }
         }
         return null;
+    }
+
+    public void updateUser(User user) {
+        // Not needed - we are modifying the user directly since both our "DB" and view are referencing the same objects
     }
 }
