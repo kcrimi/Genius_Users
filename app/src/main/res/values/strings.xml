@@ -3,5 +3,8 @@
     <string name="title_activity_user_list">Users</string>
     <string name="title_activity_user_edit">User Profile</string>
 
+
     <string name="name_required">All users must have a name</string>
+    <string name="name">Name</string>
+    <string name="bio">Bio</string>
 </resources>

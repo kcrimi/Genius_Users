@@ -10,14 +10,14 @@
     android:layout_marginTop="@dimen/material_layout_keylines_screen_edge_margin"
     android:background="@color/material_light_white"
     android:elevation="8dp"
-    android:padding="@dimen/material_component_cards_left_and_right_padding">
+    android:padding="@dimen/material_component_cards_padding_from_edge_of_screen_to_card">
 
     <ImageView
         android:id="@+id/user_image"
         android:layout_width="@android:dimen/notification_large_icon_height"
         android:layout_height="@android:dimen/notification_large_icon_height"
         android:adjustViewBounds="false"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="TextView"
         android:textAlignment="textStart"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/user_image"
@@ -44,7 +43,6 @@
         android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

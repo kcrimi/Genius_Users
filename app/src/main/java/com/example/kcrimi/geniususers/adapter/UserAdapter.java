@@ -1,5 +1,6 @@
 package com.example.kcrimi.geniususers.adapter;
 
+import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.kcrimi.geniususers.R;
 import com.example.kcrimi.geniususers.presenter.UsersPresenter;
 
@@ -20,8 +22,10 @@ import java.util.ArrayList;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     public UsersPresenter usersPresenter;
+    private final Context context;
 
-    public UserAdapter(UsersPresenter usersPresenter) {
+    public UserAdapter(Context parentContext, UsersPresenter usersPresenter) {
+        context = parentContext;
         this.usersPresenter = usersPresenter;
     }
 
@@ -64,7 +68,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         }
 
         public void setUserImage(Uri imageUri) {
-            userImage.setImageURI(imageUri);
+            Glide.with(context).load(imageUri).override(200, 200).into(userImage);
         }
 
         @Override

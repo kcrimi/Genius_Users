@@ -15,7 +15,7 @@ import com.example.kcrimi.geniususers.presenter.UsersPresenter;
 public class UsersActivity extends AppCompatActivity {
 
     private UsersPresenter presenter = new UsersPresenter(this);
-    private UserAdapter adapter = new UserAdapter(presenter);
+    private UserAdapter adapter = new UserAdapter(this, presenter);
 
 
     @Override

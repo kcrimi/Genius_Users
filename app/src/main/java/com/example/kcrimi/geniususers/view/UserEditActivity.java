@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.kcrimi.geniususers.R;
 import com.example.kcrimi.geniususers.presenter.Presenter;
 import com.example.kcrimi.geniususers.presenter.UserEditPresenter;
@@ -85,7 +86,7 @@ public class UserEditActivity extends AppCompatActivity {
     }
 
     public void setUserImage(Uri imageUri) {
-        userImage.setImageURI(imageUri);
+        Glide.with(this).load(imageUri).into(userImage);
     }
 
     public static void LaunchWithUser(Context context, Long userId) {
