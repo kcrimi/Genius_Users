@@ -37,6 +37,7 @@ public class UsersPresenter extends BasePresenter<UsersActivity> {
         User user = users.get(position);
         holder.setNameText(user.getName());
         holder.setBioText(user.getBio());
+        holder.setUserImage(user.getImageUri());
     }
 
     public void retrieveUserData() {

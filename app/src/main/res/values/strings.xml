@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">GeniusUsers</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_user_edit">UserEditActivity</string>
+    <string name="app_name">Genius Users</string>
+    <string name="title_activity_user_list">Users</string>
+    <string name="title_activity_user_edit">User Profile</string>
+
+    <string name="name_required">All users must have a name</string>
 </resources>

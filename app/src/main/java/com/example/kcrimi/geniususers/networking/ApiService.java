@@ -1,5 +1,7 @@
 package com.example.kcrimi.geniususers.networking;
 
+import android.net.Uri;
+
 import com.example.kcrimi.geniususers.model.User;
 
 import java.util.ArrayList;
@@ -21,14 +23,14 @@ public class ApiService {
 
     public ApiService() {
         users = new ArrayList<>();
-        createBaseUsers();
+//        createBaseUsers();
     }
 
     private void createBaseUsers() {
-        addUser("Kevin", "www", "I like drawings");
-        addUser("Juliet", "www", "Wherefor art thou romeo?");
-        addUser("Steve P", "www", "Come with me if you want to live");
-        addUser("GeoMan", "www", "I'm here to save the mid compact cars!");
+        addUser("Kevin", null, "I like drawings");
+        addUser("Juliet", null, "Wherefor art thou romeo?");
+        addUser("Steve P", null, "Come with me if you want to live");
+        addUser("GeoMan", null, "I'm here to save the mid compact cars!");
     }
 
     public static ApiService getInstance() {
@@ -42,7 +44,7 @@ public class ApiService {
         return users;
     }
 
-    public void addUser(String name, String imageUrl, String bio) {
+    public void addUser(String name, Uri imageUrl, String bio) {
         users.add(new User(userIdIncrementer.incrementAndGet(), name, imageUrl, bio));
     }
 

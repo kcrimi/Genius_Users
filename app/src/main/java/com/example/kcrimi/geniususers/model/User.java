@@ -1,5 +1,7 @@
 package com.example.kcrimi.geniususers.model;
 
+import android.net.Uri;
+
 /**
  * Created by kcrimi on 1/29/18.
  */
@@ -8,13 +10,13 @@ public class User {
 
     private long id;
     private String name;
-    private String imageUrl;
+    private Uri imageUri;
     private String bio;
 
-    public User(long id, String name, String imageUrl, String bio) {
+    public User(long id, String name, Uri imageUri, String bio) {
         this.id = id;
         this.name = name;
-        this.imageUrl = imageUrl;
+        this.imageUri = imageUri;
         this.bio = bio;
     }
 
@@ -30,12 +32,12 @@ public class User {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public Uri getImageUri() {
+        return imageUri;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUri(Uri imageUri) {
+        this.imageUri = imageUri;
     }
 
     public String getBio() {

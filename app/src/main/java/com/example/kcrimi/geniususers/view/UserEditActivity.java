@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -67,9 +68,9 @@ public class UserEditActivity extends AppCompatActivity {
 
     public void setEditMode(boolean desiredEditMode) {
         editMode = desiredEditMode;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(editMode);
         nameEditText.setInputType(editMode ? InputType.TYPE_CLASS_TEXT : InputType.TYPE_NULL);//setFocusable(editMode);
         bioEditText.setInputType(editMode ? InputType.TYPE_CLASS_TEXT : InputType.TYPE_NULL);//setFocusable(editMode);
-        //bioEditText.setFocusable(editMode);
         imageEditButton.setVisibility(editMode ? View.VISIBLE : View.GONE);
         fab.setImageDrawable(ContextCompat.getDrawable(this,
                 editMode ? android.R.drawable.ic_menu_save : android.R.drawable.ic_menu_edit));
@@ -103,6 +104,24 @@ public class UserEditActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_GALLERY && resultCode == RESULT_OK) {
             presenter.onImageSelected(data);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home ) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (editMode) {
+            presenter.resetUser();
+        } else {
+            finish();
         }
     }
 }

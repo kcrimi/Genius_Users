@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/user_image"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@android:dimen/notification_large_icon_height"
+        android:layout_height="@android:dimen/notification_large_icon_height"
         android:adjustViewBounds="false"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"

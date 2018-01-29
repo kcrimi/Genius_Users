@@ -2,7 +2,9 @@ package com.example.kcrimi.geniususers.presenter;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.widget.Toast;
 
+import com.example.kcrimi.geniususers.R;
 import com.example.kcrimi.geniususers.model.User;
 import com.example.kcrimi.geniususers.networking.ApiService;
 import com.example.kcrimi.geniususers.view.UserEditActivity;
@@ -30,9 +32,14 @@ public class UserEditPresenter extends BasePresenter<UserEditActivity> {
         if (selectedUserId > 0) {
             // user selected
             user = ApiService.getInstance().getUser(selectedUserId);
-            view.setNameText(user.getName());
-            view.setBioText(user.getBio());
+            displayUserData();
         }
+    }
+
+    private void displayUserData() {
+        view.setNameText(user.getName());
+        view.setBioText(user.getBio());
+        view.setUserImage(user.getImageUri());
     }
 
     @Override
@@ -41,14 +48,19 @@ public class UserEditPresenter extends BasePresenter<UserEditActivity> {
     }
 
     public void saveUserEdits(String name, String bio) {
-        if (user == null) {
-            ApiService.getInstance().addUser(name, "www", bio);
+        if (name.length() <= 0) {
+            Toast.makeText(view, view.getString(R.string.name_required), Toast.LENGTH_SHORT).show();
         } else {
-            user.setName(name);
-            user.setBio(bio);
-            ApiService.getInstance().updateUser(user);
+            if (user == null) {
+                ApiService.getInstance().addUser(name, selectedImageUri, bio);
+            } else {
+                user.setName(name);
+                user.setBio(bio);
+                user.setImageUri(selectedImageUri);
+                ApiService.getInstance().updateUser(user);
+            }
+            view.finish();
         }
-        view.setEditMode(false);
     }
 
     public void chooseImage() {
@@ -60,5 +72,14 @@ public class UserEditPresenter extends BasePresenter<UserEditActivity> {
     public void onImageSelected(Intent data) {
         selectedImageUri = data.getData();
         view.setUserImage(selectedImageUri);
+    }
+
+    public void resetUser() {
+        if (user == null) {
+            view.finish();
+        } else {
+            displayUserData();
+            view.setEditMode(false);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.kcrimi.geniususers.adapter;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
         public void setBioText(String bioString) {
             bio.setText(bioString);
+        }
+
+        public void setUserImage(Uri imageUri) {
+            userImage.setImageURI(imageUri);
         }
 
         @Override
