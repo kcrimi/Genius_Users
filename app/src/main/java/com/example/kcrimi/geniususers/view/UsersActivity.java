@@ -32,6 +32,11 @@ public class UsersActivity extends AppCompatActivity {
                 presenter.addNewUser();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         presenter.onViewAttached();
     }
 

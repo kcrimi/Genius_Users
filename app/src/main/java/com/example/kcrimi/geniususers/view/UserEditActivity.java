@@ -2,6 +2,7 @@ package com.example.kcrimi.geniususers.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +18,8 @@ import com.example.kcrimi.geniususers.presenter.Presenter;
 import com.example.kcrimi.geniususers.presenter.UserEditPresenter;
 
 public class UserEditActivity extends AppCompatActivity {
+
+    public static final int REQUEST_CODE_GALLERY = 1;
 
     public static String EXTRA_USER_ID = "extra_user_id";
     UserEditPresenter presenter = new UserEditPresenter(this);
@@ -35,6 +38,10 @@ public class UserEditActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+        userImage = findViewById(R.id.user_image);
+        imageEditButton = findViewById(R.id.edit_user_image);
+        nameEditText = findViewById(R.id.name_edit);
+        bioEditText = findViewById(R.id.bio_edit);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,10 +54,13 @@ public class UserEditActivity extends AppCompatActivity {
                 }
             }
         });
-        userImage = findViewById(R.id.user_image);
-        imageEditButton = findViewById(R.id.edit_user_image);
-        nameEditText = findViewById(R.id.name_edit);
-        bioEditText = findViewById(R.id.bio_edit);
+        imageEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.chooseImage();
+            }
+        });
+
         presenter.onViewAttached();
     }
 
@@ -73,6 +83,10 @@ public class UserEditActivity extends AppCompatActivity {
         bioEditText.setText(bioString);
     }
 
+    public void setUserImage(Uri imageUri) {
+        userImage.setImageURI(imageUri);
+    }
+
     public static void LaunchWithUser(Context context, Long userId) {
         Intent intent = new Intent(context, UserEditActivity.class);
         intent.putExtra(EXTRA_USER_ID, userId);
@@ -84,4 +98,11 @@ public class UserEditActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_GALLERY && resultCode == RESULT_OK) {
+            presenter.onImageSelected(data);
+        }
+    }
 }
